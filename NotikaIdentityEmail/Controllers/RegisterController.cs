@@ -15,10 +15,10 @@ namespace NotikaIdentityEmail.Controllers
 
 
         // bu ise yapıcı metottur yani örnek veriyoruz ilk veriyi hazırlar mesela başladık neye başladık bir öğrenci verdik ad soyad numara burası ctor ile yani consturctor ad baran soyad daşdemir numara 111 numarası atadı 
-        //public RegisterController(UserManager<AppUser> userManager)
-        //{
-        //    _userManager = userManager;
-        //}
+        public RegisterController(UserManager<AppUser> userManager)
+        {
+            _userManager = userManager;
+        }
 
         //bu yapının tamamı dependenjy injection oldu kahve mantığı gibi düşün kahve makinesinin türk kahvesi öğütücüsü koyarsan türk kahvesi olur espresso öğütücü koyarsan espresso olur işte bu öğütücü dependecy injectiondur
 
@@ -41,7 +41,7 @@ namespace NotikaIdentityEmail.Controllers
                 Email=model.Email,
                 UserName = model.Username
             };
-            var result = await _userManager.CreateAsync(appUser,model.Pasword);// appuser türünde parametre istiyor // burada oluşturma işlemi yaptık
+            var result = await _userManager.CreateAsync(appUser,model.Password);// appuser türünde parametre istiyor // burada oluşturma işlemi yaptık
             if (result.Succeeded)// bu işlemler başarılı olursa
             {
                 return RedirectToAction("UserLogin", "Login"); //buraya gönder
