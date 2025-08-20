@@ -7,7 +7,7 @@ namespace NotikaIdentityEmail.Context
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server=BARANPC\\SQLEXPRESS;Database=NotikaEmailDb;integrated security=True; TrustServerCertificate=True;");
+            optionsBuilder.UseSqlServer("Server=BARANPC\\SQLEXPRESS;Database=NotikaEmailDb;integrated security=True; TrustServerCertificate=True;");  
         }
     }
 }
