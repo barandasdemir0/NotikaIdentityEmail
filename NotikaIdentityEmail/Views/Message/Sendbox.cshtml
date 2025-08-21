@@ -1,14 +1,15 @@
 ﻿@model List<Message>
 @{
-    ViewData["Title"] = "Inbox";
+    ViewData["Title"] = "Sendbox";
     Layout = "~/Views/UserLayout/Index.cshtml";
 }
+
 
 <div class="inbox-area">
     <div class="container">
         <div class="row">
             @await Component.InvokeAsync("_MessageSidebarComponentPartial")
-          
+
             <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
                 <div class="inbox-text-list sm-res-mg-t-30">
                     <div class="form-group">
@@ -34,27 +35,29 @@
                     <div class="table-responsive">
                         <table class="table table-hover table-inbox">
                             <tbody>
-                               @foreach (var item in Model)
+                                @foreach (var item in Model)
                                 {
                                     <tr>
                                         <td class="">
                                             <label><input type="checkbox" class="i-checks"></label>
                                         </td>
-                                        <td><a href="#">Gönderici</a> <span class="label label-warning">@item.CategoryID</span></td>
+                                        <td><a href="#">Alıcı: </a> <span class="label label-warning">@item.CategoryID</span></td>
                                         <td><a href="#"><strong>Konu :  @item.Subject</strong>@* @item.Subject.Substring(0,40) *@</a></td>
                                         <td></td>
                                         <td class="text-right mail-date">@item.SendDate.ToShortDateString()</td>
                                     </tr>
                                 }
-                              
-                               
+
+
                             </tbody>
                         </table>
-                       
+
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+
 

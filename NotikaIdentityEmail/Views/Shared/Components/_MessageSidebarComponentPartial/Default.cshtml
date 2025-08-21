@@ -7,22 +7,15 @@
         </div>
         <div class="inbox-status">
             <ul class="inbox-st-nav inbox-ft">
-                <li><a href="#"><i class="notika-icon notika-mail"></i> Gelen Kutusu<span class="pull-right">21</span></a></li>
+                <li><a href="#"><i class="notika-icon notika-mail"></i> Gelen Kutusu<span class="pull-right">0</span></a></li>
                 <li><a href="#"><i class="notika-icon notika-sent"></i> Giden Kutusu</a></li>
                 <li><a href="#"><i class="notika-icon notika-draft"></i> Taslaklar</a></li>
                 <li><a href="#"><i class="notika-icon notika-trash"></i> Çöp Kutusu</a></li>
             </ul>
         </div>
         <hr>
-        <div class="inbox-status">
-            <ul class="inbox-st-nav">
-                <li><a href="#"><i class="notika-icon notika-travel"></i> Eğitim</a></li>
-                <li><a href="#"><i class="notika-icon notika-finance"></i> Seyahat</a></li>
-                <li><a href="#"><i class="notika-icon notika-social"></i> Sosyal</a></li>
-                <li><a href="#"><i class="notika-icon notika-promos"></i> Kampanyalar</a></li>
-                <li><a href="#"><i class="notika-icon notika-flag"></i> Güncellemeler</a></li>
-            </ul>
-        </div>
+        @await Component.InvokeAsync("_MessageCategoryListSidebarComponentPartial")
+
         <hr>
         <div class="inbox-status">
             <ul class="inbox-st-nav inbox-nav-mg">

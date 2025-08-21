@@ -1,0 +1,15 @@
+﻿@model List<Category>
+
+<div class="inbox-status">
+    <ul class="inbox-st-nav">
+        @foreach (var item in Model)
+        {
+            <li><a href="#"><i class="@item.CategoryIconUrl"></i> @item.CategoryName</a></li>
+        }
+
+     @*    <li><a href="#"><i class="notika-icon notika-finance"></i> Seyahat</a></li>
+        <li><a href="#"><i class="notika-icon notika-social"></i> Sosyal</a></li>
+        <li><a href="#"><i class="notika-icon notika-promos"></i> Kampanyalar</a></li>
+        <li><a href="#"><i class="notika-icon notika-flag"></i> Güncellemeler</a></li> *@
+    </ul>
+</div>
