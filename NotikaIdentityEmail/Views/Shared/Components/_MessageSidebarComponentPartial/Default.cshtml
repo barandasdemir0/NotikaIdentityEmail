@@ -3,14 +3,14 @@
 <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
     <div class="inbox-left-sd">
         <div class="compose-ml">
-            <a class="btn" href="#">Yeni Mesaj Oluştur</a>
+            <a class="btn" href="/Message/ComposeMessage/">Yeni Mesaj Oluştur</a>
         </div>
         <div class="inbox-status">
             <ul class="inbox-st-nav inbox-ft">
-                <li><a href="#"><i class="notika-icon notika-mail"></i> Gelen Kutusu<span class="pull-right">0</span></a></li>
-                <li><a href="#"><i class="notika-icon notika-sent"></i> Giden Kutusu</a></li>
-                <li><a href="#"><i class="notika-icon notika-draft"></i> Taslaklar</a></li>
-                <li><a href="#"><i class="notika-icon notika-trash"></i> Çöp Kutusu</a></li>
+                <li><a href="/Message/Inbox/"><i class="notika-icon notika-mail"></i> Gelen Kutusu<span class="pull-right">@ViewBag.receiverMessageCount</span></a></li>
+                <li><a href="/Message/Sendbox/"><i class="notika-icon notika-sent"></i> Giden Kutusu<span class="pull-right">@ViewBag.sendMessageCount</span></a></li>
+                <li><a href="/Message/Draft/"><i class="notika-icon notika-draft"></i> Taslaklar</a></li>
+                <li><a href="/Message/Trash/"><i class="notika-icon notika-trash"></i> Çöp Kutusu</a></li>
             </ul>
         </div>
         <hr>

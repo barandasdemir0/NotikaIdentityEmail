@@ -33,6 +33,8 @@ namespace NotikaIdentityEmail.Controllers
 
             return View(model);
         }
+
+        [HttpPost]
         public async Task<IActionResult> EditProfile(UserEditViewModel model)
         {
             if (model.Password == model.PasswordConfirm)
