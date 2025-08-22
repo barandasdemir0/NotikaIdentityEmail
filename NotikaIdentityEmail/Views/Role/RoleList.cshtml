@@ -1,0 +1,51 @@
+﻿@using Microsoft.AspNetCore.Identity
+@model List<IdentityRole>
+@{
+    ViewData["Title"] = "RoleList";
+    Layout = "~/Views/UserLayout/Index.cshtml";
+    int count = 0;
+}
+
+<div class="form-element-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="form-element-list">
+                    <div class="basic-tb-hd">
+                        <h2>Rolleri Listesi</h2>
+                        <p>Oluşturduğunuz rollerin bilgilerinizi eksiksiz ve doğru Listesi.</p>
+                    </div>
+
+                    <div class="row">
+
+                        <table class="table table-bordered">
+                            <tr>
+                                <th>Role Id</th>
+                                <th>Role Adı</th>
+                                <th>Role Sil</th>
+                                <th>Role Güncelle</th>
+                            </tr>
+
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@(++count)</td>
+                                    <td>@item.Name</td>
+                                    <td><a class="btn btn-danger" href="/Role/DeleteRole/@item.Id">Rol Sil</a>  </td>
+                                    <td><a class="btn btn-warning" href="/Role/UpdateRole/@item.Id">Rol Güncelle</a>  </td>
+
+                                </tr>
+                            }
+                        </table>
+                        <a class="btn btn-success" href="/Role/CreateRole/">Rol Ekle</a>
+                    </div>
+
+
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+

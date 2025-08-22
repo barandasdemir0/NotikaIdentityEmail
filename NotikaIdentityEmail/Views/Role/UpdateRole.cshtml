@@ -1,0 +1,45 @@
+﻿@model UpdateRoleViewModel
+@{
+    ViewData["Title"] = "UpdateRole";
+    Layout = "~/Views/UserLayout/Index.cshtml";
+}
+
+<div class="form-element-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="form-element-list">
+                    <div class="basic-tb-hd">
+                        <h2>Rolleri Güncelle</h2>
+                        <p>Düzenlemek İstediğiniz rollerin bilgilerinizi eksiksiz ve doğru olarak güncelleme yapınız.</p>
+                    </div>
+                    <form method="post">
+                        <div class="row">
+                            <input type="hidden" asp-for="RoleId"  />
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="form-group">
+                                    <div class="nk-int-st">
+                                        <input type="text" asp-for="RoleName" class="form-control" placeholder="Adınız">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="form-group">
+                                    <div class="nk-int-st">
+                                        <button class="btn btn-success">Rolü Güncelle</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </form>
+
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
