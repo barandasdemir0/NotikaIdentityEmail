@@ -6,6 +6,7 @@ using NotikaIdentityEmail.Entities;
 using NotikaIdentityEmail.Models.IdentityModels;
 using NotikaIdentityEmail.Models.JwtModels;
 using System.Text;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,14 +18,21 @@ builder.Services.AddIdentity<AppUser, IdentityRole>().AddEntityFrameworkStores<E
 //bağımlılıkları enjeksiyon etmemiz gerekir yoksa hata verir
 
 
+// JWT Ayarlarý
 builder.Services.Configure<JwtSettingsModel>(builder.Configuration.GetSection("JwtSettings"));
 
-
+// Cookie + JWT birlikte authentication
 builder.Services.AddAuthentication(options =>
 {
-    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-}).AddJwtBearer(opt =>
+    options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+})
+.AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, options =>
+{
+    options.LoginPath = "/Login/UserLogin";
+    options.AccessDeniedPath = "/Error/403";
+})
+.AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, opt =>
 {
     var jwtSettings = builder.Configuration.GetSection("JwtSettings").Get<JwtSettingsModel>();
     opt.TokenValidationParameters = new TokenValidationParameters
@@ -39,7 +47,34 @@ builder.Services.AddAuthentication(options =>
     };
 });
 
+//builder.Services.Configure<JwtSettingsModel>(builder.Configuration.GetSection("JwtSettings"));
 
+
+//builder.Services.AddAuthentication(options =>
+//{
+//    options.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+//    options.DefaultChallengeScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+//}).AddJwtBearer(opt =>
+//{
+//    var jwtSettings = builder.Configuration.GetSection("JwtSettings").Get<JwtSettingsModel>();
+//    opt.TokenValidationParameters = new TokenValidationParameters
+//    {
+//        ValidateIssuer = true,
+//        ValidateAudience = true,
+//        ValidateLifetime = true,
+//        ValidateIssuerSigningKey = true,
+//        ValidIssuer = jwtSettings.Issuer,
+//        ValidAudience = jwtSettings.Audience,
+//        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings.Key))
+//    };
+//});
+
+
+//builder.Services.ConfigureApplicationCookie(options =>
+//{
+//    options.LoginPath = "/Login/UserLogin";
+//    options.AccessDeniedPath = "/Login/UserLogin";
+//});
 
 
 var app = builder.Build();

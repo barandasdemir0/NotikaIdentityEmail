@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace NotikaIdentityEmail.Controllers
 {
+    
     public class LoginController : Controller
     {
 
@@ -30,23 +31,25 @@ namespace NotikaIdentityEmail.Controllers
         {
 
             var value = _emailContext.Users.Where(x => x.UserName == model.Username).FirstOrDefault();
-            if (value.EmailConfirmed == true)
+            if (value == null)
             {
-                var result = await _signInManager.PasswordSignInAsync(model.Username, model.Password, true, true);
-                if (result.Succeeded)
-                {
-                    return RedirectToAction("EditProfile", "Profile");
-                }
-            }
-            else
-            {
-
-                ModelState.AddModelError("", "Email Hesabınız Onaylanmamıştır Lütfen Hesabınızı Onaylayın");
+                ModelState.AddModelError(string.Empty, "Kullanıcı bulunamadı.");
+                return View(model);
             }
 
+            if (!value.EmailConfirmed)
+            {
+                ModelState.AddModelError(string.Empty, "E-Mail Adresinizi henüz onaylanmamış.");
+                return View(model);
+            }
 
-            ModelState.AddModelError("", "Şifre Veya Kullanıcı adı Yanlış");
-            return View();
+            var result = await _signInManager.PasswordSignInAsync(model.Username, model.Password, true, true);
+            if (result.Succeeded)
+            {
+                return RedirectToAction("EditProfile", "Profile");
+            }
+            ModelState.AddModelError(string.Empty, "Kullanıcı adı veya şifre yanlış");
+            return View(model);
 
 
 
