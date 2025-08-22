@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using NotikaIdentityEmail.Context;
 using NotikaIdentityEmail.Entities;
 using NotikaIdentityEmail.Models;
+using NotikaIdentityEmail.Models.MessageViewModel;
 using NuGet.Protocol.Plugins;
 using System.Threading.Tasks;
 

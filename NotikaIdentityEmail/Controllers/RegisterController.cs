@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using MimeKit;
 using NotikaIdentityEmail.Entities;
-using NotikaIdentityEmail.Models;
+using NotikaIdentityEmail.Models.IdentityModels;
 using System.Threading.Tasks;
 
 namespace NotikaIdentityEmail.Controllers

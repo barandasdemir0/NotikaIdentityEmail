@@ -1,7 +1,6 @@
-﻿@using NotikaIdentityEmail.Models.IdentityModels
-@model UserEditViewModel
+﻿@model SimpleUserViewModel
 @{
-    ViewData["Title"] = "EditProfile";
+    ViewData["Title"] = "Generate";
     Layout = "~/Views/UserLayout/Index.cshtml";
 }
 
@@ -11,12 +10,12 @@
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="form-element-list">
                     <div class="basic-tb-hd">
-                        <h2>Profilini Düzenle</h2>
-                        <p>Lütfen bilgilerinizi eksiksiz ve doğru olarak güncelleme yapınız.</p>
+                        <h2>Token Oluşturma </h2>
+                        <p>Parametreleri Girerek Token Oluşturabilirsiniz.</p>
                     </div>
                     <form method="post">
                         <div class="row">
-                           
+
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 <div class="form-group">
                                     <div class="nk-int-st">
@@ -38,13 +37,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                <div class="form-group">
-                                    <div class="nk-int-st">
-                                        <input type="text" asp-for="ImageUrl" class="form-control" placeholder="Fotoğraf url bilgisi">
-                                    </div>
-                                </div>
-                            </div>
+                          
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 <div class="form-group">
                                     <div class="nk-int-st">
@@ -52,50 +45,28 @@
                                     </div>
                                 </div>
                             </div>
+                     
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 <div class="form-group">
                                     <div class="nk-int-st">
-                                        <input type="text" asp-for="Email" class="form-control" placeholder="Email Adresiniz">
+                                        <button class="btn btn-success">Token Oluştur</button>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                <div class="form-group">
-                                    <div class="nk-int-st">
-                                        <input type="text" asp-for="PhoneNumber" class="form-control" placeholder="Telefonunuz">
+                             @if (!string.IsNullOrEmpty(Model?.Token))
+                                {
+                                    <div class="alert-validate alert-success mt-3">
+                                        <strong>Token: </strong><br />
+                                        <textarea rows="5" class="form-control">@Model.Token</textarea>
                                     </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                <div class="form-group">
-                                    <div class="nk-int-st">
-                                        <input type="text" asp-for="Password" class="form-control" placeholder="Şifreniz">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                <div class="form-group">
-                                    <div class="nk-int-st">
-                                        <input type="text" asp-for="PasswordConfirm" class="form-control" placeholder="Tekrar Şifre">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                <div class="form-group">
-                                    <div class="nk-int-st">
-                                        <button class="btn btn-success">Bilgileri Güncelle</button>
-                                    </div>
-                                </div>
-                            </div>
-                          
+                                }
                         </div>
                     </form>
-                 
-                  
+
+
                 </div>
             </div>
         </div>
-      
+
     </div>
 </div>
-

@@ -1,4 +1,4 @@
-﻿namespace NotikaIdentityEmail.Models
+﻿namespace NotikaIdentityEmail.Models.IdentityModels
 {
     public class RegisterUserViewModel //ihtiyacımız olan sınıfları çağırmak için bir nevi dto
     {

@@ -1,7 +1,11 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.IdentityModel.Tokens;
 using NotikaIdentityEmail.Context;
 using NotikaIdentityEmail.Entities;
-using NotikaIdentityEmail.Models;
+using NotikaIdentityEmail.Models.IdentityModels;
+using NotikaIdentityEmail.Models.JwtModels;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,6 +15,29 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<EmailContext>();
 builder.Services.AddIdentity<AppUser, IdentityRole>().AddEntityFrameworkStores<EmailContext>().AddErrorDescriber<CustomIdentityValidator>();
 //bağımlılıkları enjeksiyon etmemiz gerekir yoksa hata verir
+
+
+builder.Services.Configure<JwtSettingsModel>(builder.Configuration.GetSection("JwtSettings"));
+
+
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+}).AddJwtBearer(opt =>
+{
+    var jwtSettings = builder.Configuration.GetSection("JwtSettings").Get<JwtSettingsModel>();
+    opt.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidateIssuer = true,
+        ValidateAudience = true,
+        ValidateLifetime = true,
+        ValidateIssuerSigningKey = true,
+        ValidIssuer = jwtSettings.Issuer,
+        ValidAudience = jwtSettings.Audience,
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings.Key))
+    };
+});
 
 
 
