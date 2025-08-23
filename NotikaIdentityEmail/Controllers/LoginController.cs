@@ -96,7 +96,7 @@ namespace NotikaIdentityEmail.Controllers
             {
                 return RedirectToAction("Inbox", "Message");
             }
-            else
+            else  
             {
                 var email = info.Principal.FindFirstValue(ClaimTypes.Email);
                 var user = new AppUser()
