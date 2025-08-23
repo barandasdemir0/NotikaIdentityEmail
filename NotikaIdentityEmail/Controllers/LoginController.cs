@@ -51,6 +51,11 @@ namespace NotikaIdentityEmail.Controllers
                 ModelState.AddModelError(string.Empty, "E-Mail Adresinizi henüz onaylanmamış.");
                 return View(model);
             }
+            if (!value.IsActive)
+            {
+                ModelState.AddModelError(string.Empty, "Kullanıcı pasif Durumunda Giriş Yapamaz.");
+                return View(model);
+            }
 
             var result = await _signInManager.PasswordSignInAsync(model.Username, model.Password, true, true);
             if (result.Succeeded)

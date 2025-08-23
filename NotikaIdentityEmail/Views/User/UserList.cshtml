@@ -1,0 +1,57 @@
+﻿@model List<AppUser>
+@{
+    ViewData["Title"] = "UserList";
+    Layout = "~/Views/UserLayout/Index.cshtml";
+    int count = 0;
+}
+
+<div class="form-element-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="form-element-list">
+                    <div class="basic-tb-hd">
+                        <h2>Kullanıcı Listesi</h2>
+                        <p>Oluşturduğunuz Kullanıcı bilgilerinizi eksiksiz ve doğru Listesi.</p>
+                    </div>
+
+                    <div class="row">
+
+                        <table class="table table-bordered">
+                            <tr>
+                                <th>Kullanıcı Id</th>
+                                <th>Adı Soyadı</th>
+                                <th>Kullanıcı Adı</th>
+                                <th>Kullanıcı Email</th>
+                                <th>Kullanıcı Durum</th>
+                                <th>Kullanıcı Pasif Yap</th>
+                                <th>Kullanıcı Aktif Yap</th>
+                            </tr>
+
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@(++count)</td>
+                                    <td>@item.Name @item.Surname</td>
+                                    <td>@item.UserName</td>
+                                    <td>@item.Email</td>
+                                    <td>@item.IsActive</td>
+                                    <td><a class="btn btn-danger" href="/User/PassiveUser/@item.Id">Pasif Yap</a>  </td>
+                                    <td><a class="btn btn-success" href="/User/ActiveUser/@item.Id">Aktif Yap</a>  </td>
+
+                                </tr>
+                            }
+                        </table>
+
+                    </div>
+
+
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
