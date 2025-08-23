@@ -7,6 +7,7 @@ using NotikaIdentityEmail.Models.IdentityModels;
 using NotikaIdentityEmail.Models.JwtModels;
 using System.Text;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.Google;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -44,7 +45,13 @@ builder.Services.AddAuthentication(options =>
         ValidIssuer = jwtSettings.Issuer,
         ValidAudience = jwtSettings.Audience,
         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings.Key))
-    };
+    };//GOOGLE AUTHENTİCATİON KONFİGURASYONU
+}).AddGoogle(GoogleDefaults.AuthenticationScheme, opt =>
+{
+    opt.ClientId = "key gelecek";
+    opt.ClientSecret = "key gelecek";
+    opt.CallbackPath = "/signin-google";
+
 });
 
 //builder.Services.Configure<JwtSettingsModel>(builder.Configuration.GetSection("JwtSettings"));
@@ -75,6 +82,11 @@ builder.Services.AddAuthentication(options =>
 //    options.LoginPath = "/Login/UserLogin";
 //    options.AccessDeniedPath = "/Login/UserLogin";
 //});
+
+
+
+
+
 
 
 var app = builder.Build();
