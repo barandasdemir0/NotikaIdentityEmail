@@ -1,0 +1,56 @@
+﻿@using Microsoft.AspNetCore.Identity
+@model List<Comment>
+@{
+    ViewData["Title"] = "UserCommentList";
+    Layout = "~/Views/UserLayout/Index.cshtml";
+    int count = 0;
+}
+
+<div class="form-element-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="form-element-list">
+                    <div class="basic-tb-hd">
+                        <h2>Rolleri Listesi</h2>
+                        <p>Oluşturduğunuz rollerin bilgilerinizi eksiksiz ve doğru Listesi.</p>
+                    </div>
+
+                    <div class="row">
+
+                        <table class="table table-bordered">
+                            <tr>
+                                <th>#</th>
+                                <th>Kullanıcı</th>
+                                <th>Yorum</th>
+                                <th>Durum</th>
+                                <th>Yorumu Sil</th>
+                                <th>Pasife Çek</th>
+                                <th>Yorumu Onayla</th>
+                            </tr>
+
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@(++count)</td>
+                                    <td>@item.AppUser.Name @item.AppUser.Surname</td>
+                                    <td>@item.CommentDetail</td>
+                                    <td>@item.CommentStatus</td>
+                                    <td><a class="btn btn-danger" href="/Comment/DeleteComment/@item.CommentID">Sil</a>  </td>
+                                    <td><a class="btn btn-warning" href="/Comment/UpdateComment/@item.CommentID">Pasif Yap</a>  </td>
+                                    <td><a class="btn btn-success" href="/Comment/UpdateComment/@item.CommentID">Yorumu Onayla</a>  </td>
+
+                                </tr>
+                            }
+                        </table>
+                    </div>
+
+
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+

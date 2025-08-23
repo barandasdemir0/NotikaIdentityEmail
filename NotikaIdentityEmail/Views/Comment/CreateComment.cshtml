@@ -1,0 +1,10 @@
+﻿<div class="comment-form">
+    <h4>📝 Yeni Yorum Ekle</h4>
+    <form asp-action="CreateComment" asp-controller="Comment" method="post">
+        <div class="form-group mb-3">
+            <label for="CommentDetail">Yorumunuz</label>
+            <textarea name="CommentDetail" class="form-control" rows="4" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-success">Yorumu Gönder</button>
+    </form>
+</div>
