@@ -110,5 +110,35 @@ namespace NotikaIdentityEmail.Controllers
             _context.SaveChanges();
             return RedirectToAction("Sendbox");
         }
+
+
+        public async Task<IActionResult> GetMessageListByCategory(int id)
+        {
+            var values = await _userManager.FindByNameAsync(User.Identity.Name);
+            var messages = (from x in _context.Messages
+                            join u in _context.Users
+                            on x.SenderEmail equals u.Email into userGroup
+                            from sender in userGroup.DefaultIfEmpty()
+                            join c in _context.Categories
+                            on x.CategoryID equals c.CategoryID into categoryGroup
+                            from category in categoryGroup.DefaultIfEmpty()
+                            where
+                            x.ReceiverEmail == values.Email && x.CategoryID == id
+                            select new MessageWithSenderInfoViewModel
+                            {
+                                MessageId = x.MessageID,
+                                MessageDetail = x.MessageDetail,
+                                Subject = x.Subject,
+                                SendDate = x.SendDate,
+                                SenderMail = x.SenderEmail,
+                                SenderName = sender != null ? sender.Name : "Bilinmeyen",
+                                SenderSurname = sender != null ? sender.Surname : "Kullanıcı",
+                                CategoryName = category != null ? category.CategoryName : "Bilinmeyen Kategori"
+                            }).ToList();
+
+
+       
+            return View(messages);
+        }
     }
 }
