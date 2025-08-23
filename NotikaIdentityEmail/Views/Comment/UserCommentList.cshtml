@@ -37,8 +37,8 @@
                                     <td>@item.CommentDetail</td>
                                     <td>@item.CommentStatus</td>
                                     <td><a class="btn btn-danger" href="/Comment/DeleteComment/@item.CommentID">Sil</a>  </td>
-                                    <td><a class="btn btn-warning" href="/Comment/UpdateComment/@item.CommentID">Pasif Yap</a>  </td>
-                                    <td><a class="btn btn-success" href="/Comment/UpdateComment/@item.CommentID">Yorumu Onayla</a>  </td>
+                                    <td><a class="btn btn-warning" href="/Comment/CommentStatusChangeToToxic/@item.CommentID">Pasif Yap</a>  </td>
+                                    <td><a class="btn btn-success" href="/Comment/CommentStatusChangeToNormal/@item.CommentID">Yorumu Onayla</a>  </td>
 
                                 </tr>
                             }
