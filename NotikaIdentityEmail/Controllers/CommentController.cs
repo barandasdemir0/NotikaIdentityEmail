@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using NotikaIdentityEmail.Context;
@@ -24,6 +25,7 @@ namespace NotikaIdentityEmail.Controllers
             return View(values);
         }
 
+        [Authorize(Roles = "Admin")]
         public IActionResult UserCommentList()
         {
             var values = _context.Comments.Include(x => x.AppUser).ToList();
@@ -91,7 +93,7 @@ namespace NotikaIdentityEmail.Controllers
                             string label = item.GetProperty("label").GetString();
                             double score = item.GetProperty("score").GetDouble();
 
-                            if (score > 0.5)
+                            if (score > 0.3)
                             {
                                 comment.CommentStatus = "Toksik Yorum";
                                 break;
@@ -101,7 +103,7 @@ namespace NotikaIdentityEmail.Controllers
 
                     if (string.IsNullOrEmpty(comment.CommentStatus))
                     {
-                        comment.CommentStatus = "Onay Bekliyor";
+                        comment.CommentStatus = "Onaylandı";
                     }
 
                 }
